@@ -12,8 +12,9 @@ async function fetchHistory(locationId: string): Promise<SensorReading[]> {
     cache: 'no-store',
   });
   if (!res.ok) throw new Error('Sensor API error');
-  const { readings } = await res.json();
-  return readings as SensorReading[];
+  const data = await res.json();
+  console.log('[useSensorData] API response:', data);
+  return data.readings as SensorReading[];
 }
 
 function buildSeededAlerts(readings: SensorReading[]): AlertEvent[] {

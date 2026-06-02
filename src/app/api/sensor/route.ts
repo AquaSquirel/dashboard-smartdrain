@@ -37,5 +37,6 @@ export async function GET(req: NextRequest) {
   const location = req.nextUrl.searchParams.get('location') ?? 'galeria-central';
   const device_id = LOCATION_DEVICE[location] ?? DEFAULT_DEVICE;
   const readings = getReadings(device_id, 60);
+  console.log(`[sensor GET] location=${location} device=${device_id} readings=${readings.length}`, readings.at(-1) ?? 'no data');
   return NextResponse.json({ readings });
 }
